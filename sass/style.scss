@@ -23,6 +23,21 @@
 
 }
 
+
+// making same sprite small in size
+@mixin resize-sprite($map, $sprite, $percent) {
+  $spritePath:    sprite-path($map);
+  $spriteWidth:   image-width($spritePath);
+  $spriteHeight:  image-height($spritePath);
+  $width: image-width(sprite-file($map, $sprite));
+  $height: image-height(sprite-file($map, $sprite));
+
+  @include background-size(ceil($spriteWidth * ($percent/100)) ceil($spriteHeight * ($percent/100)));
+  width: ceil($width*($percent/100));
+  height: ceil($height*($percent/100));
+  background-position: 0 floor(nth(sprite-position($map, $sprite), 2)  * ($percent/100) );
+}
+
 @mixin opensans() {
     font-family: 'open_sansregular';
 }
@@ -1203,7 +1218,6 @@ $pad-val : 55px;
   }
   .accordion-content {display: none; width: 100%; float: left; }
   .title_group { width: 70%; float: left; }
-  .expand_close { float: right; }
   .accordion-content.default {display: block;}
 
   .custom_accordion { 
@@ -1351,5 +1365,53 @@ $pad-val : 55px;
 .widget_testimonial {
     p { font-size: 15px; line-height: 34px; }
 }
+
+.custom_accordion_sidebar {
+
+@each $icon1 in gainvisibility-icon, qualitytraffic-icon, growaudience-icon, nurtureprospects-icon, automatesales-icon {
+    .#{$icon1} {
+        // @include spr-sprite($icon, true);
+        @include resize-sprite($spr-sprites, $icon1, 50);
+    }
+}
+.checkbox_wrap {
+    padding-bottom: 10px;
+}
+p { padding-bottom: 0; }
+.growaudience-icon { height: 38px; }
+.sign_up_strategy  {line-height: 20px; }
+.acc_wrap:last-child:before {
+    border-left: 10px solid #fff;
+    left: -27px;
+}
+.acc_wrap:first-child { padding-top: 0; }
+.acc_icon {
+    top: -9px;
+    left: -56px;
+}
+// .acc_icon { width: 50px !important; }
+    .expand_close { padding-right: 0;     font-weight: bold; }
+    .sign_up_strategy { font-size: 14px; }
+    .acc_wrap { width: 93%;     padding: 20px 0; }
+    &.custom_accordion { margin-left: 0;  border-left: 10px solid #e4e4e4;  
+        p {    font-size: 14px; line-height: 20px; letter-spacing: 0;}
+
+    [type="checkbox"]:not(:checked) + label,
+    [type="checkbox"]:checked + label {
+            font-size: 14px;
+    }
+
+        .title_group {font-size: 16px;      width: 90%;
+            .sub_head  {     letter-spacing: 0.02px; font-size: 12px; }
+        }
+    }
+p + .checkbox_wrap  { margin-top: 10px; }
+
+}
+
+
+
+
+
 
 @import "responsive";

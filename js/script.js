@@ -15,18 +15,18 @@ $(document).ready(function(){
 
         $(this).removeClass('active_head').parent().removeClass('accordion_active');
         $(this).find('.expand_close').fadeOut(function() {
-                                      $(this).text("+ Expand")
+                                      $(this).text("+")
                                     }).fadeIn('fast');
 
 
 
       } else {
 
-        $('.accordion-toggle').find('.expand_close').text("+ Expand");
+        $('.accordion-toggle').find('.expand_close').text("+");
                                                     
         $('.accordion-toggle').removeClass('active_head').parent().removeClass('accordion_active');
         $(this).find('.expand_close').fadeOut(function() {
-                                      $(this).text("- Collapse")
+                                      $(this).text("-")
                                     }).fadeIn('fast'); 
 
         $(this).addClass('active_head').parent().addClass('accordion_active');
